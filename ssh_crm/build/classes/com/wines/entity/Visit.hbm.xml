@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<!-- 配置映射关系 -->
+<hibernate-mapping>
+    <class name="com.wines.entity.Visit" table="t_visit">
+        <!-- hibernate要求实体类有一个属性唯一的 -->
+        <id name="vid" column="vid">
+            <generator class="native"></generator>
+        </id>
+        
+        <!-- 配置其他属性和表中字段对应 -->
+        <property name="vaddress" column="vaddress"></property>
+        <property name="vtime" column="vtime"></property>
+        
+        <many-to-one name="user" class="com.wines.entity.User" column="uvid"></many-to-one>
+        
+        <many-to-one name="customer" class="com.wines.entity.Customer" column="cvid"></many-to-one> 
+    </class>
+</hibernate-mapping>

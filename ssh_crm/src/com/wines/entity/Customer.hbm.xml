@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<!-- 配置映射关系 -->
+<hibernate-mapping>
+    <class name="com.wines.entity.Customer" table="t_customer">
+        <!-- hibernate要求实体类有一个属性唯一的 -->
+        <id name="cid" column="cid">
+            <generator class="native"></generator>
+        </id>
+        
+        <!-- 配置其他属性和表中字段对应 -->
+        <property name="custName" column="custName"></property>
+        <property name="custLevel" column="custLevel"></property>
+        <property name="custSource" column="custSource"></property>
+        <property name="custPhone" column="custPhone"></property>
+        <property name="custMobile" column="custMobile"></property>
+        
+        <set name="setLinkMan" inverse="true" cascade="delete">
+            <key column="clid"></key>
+            <one-to-many class="com.wines.entity.LinkMan"/>
+        </set>
+        
+        <set name="setCusVisit">
+            <key column="cvid"></key>
+            <one-to-many class="com.wines.entity.Visit"/>
+        </set>  
+    </class>
+</hibernate-mapping>

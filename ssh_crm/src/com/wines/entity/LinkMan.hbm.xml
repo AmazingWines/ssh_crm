@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<!-- 配置映射关系 -->
+<hibernate-mapping>
+    <class name="com.wines.entity.LinkMan" table="t_linkman">
+        <!-- hibernate要求实体类有一个属性唯一的 -->
+        <id name="linkid" column="linkid">
+            <generator class="native"></generator>
+        </id>
+        
+        <!-- 配置其他属性和表中字段对应 -->
+        <property name="lkmName" column="lkmName"></property>
+        <property name="lkmGender" column="lkmGender"></property>
+        <property name="lkmPhone" column="lkmPhone"></property>
+        <property name="lkmMobile" column="lkmMobile"></property>
+        
+        <!-- 表示联系人所属客户
+             name:因为在联系人实体类中用customer对象表示
+             column：外键名称
+        -->
+        <many-to-one name="customer" class="com.wines.entity.Customer" column="clid"></many-to-one>  
+    </class>
+</hibernate-mapping>
